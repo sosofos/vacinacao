@@ -1,118 +1,188 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-import CardActions from '@mui/material/CardActions';
-import { Button } from "@mui/material";
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import CardActionArea from '@mui/material/CardActionArea';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid'; // Ensure this import is correct
-import Box from '@mui/material/Box';
+'use client';
 
-export default function VaccineHomePage() {
-  const cards = [
+import React, { useState, useEffect } from 'react';
+import { Shield, Heart, Users, TrendingUp, Award, ChevronDown } from 'lucide-react';
+
+export default function VaccinationHome() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+  const stats = [
+    { number: '154M+', label: 'Vidas Salvas', icon: Heart },
+    { number: '99%', label: 'Taxa de Eficácia', icon: Award },
+    { number: '200+', label: 'Países Participantes', icon: Users },
+    { number: '50+', label: 'Doenças Prevenidas', icon: Shield }
+  ];
+
+  const benefits = [
     {
-      title: "O que é uma Vacina?",
-      description: "As vacinas são preparações biológicas que estimulam o sistema imunológico a produzir anticorpos, oferecendo proteção contra doenças específicas sem causar a doença em si.",
-      image: "https://www.provepsico.com.br/wp-content/uploads/2022/07/WhatsApp-Image-2022-07-06-at-10.09.28.jpeg",
-      alt: "Vacina e seringa"
+      title: 'Proteção Individual',
+      description: 'As vacinas fortalecem seu sistema imunológico, criando defesas contra doenças graves e potencialmente fatais.',
+      icon: Shield,
+      color: 'from-blue-500 to-cyan-500'
     },
     {
-      title: "Como Funciona",
-      description: "Ao receber a vacina, seu corpo aprende a reconhecer e combater vírus e bactérias. Isso cria uma memória imunológica que protege você em exposições futuras ao agente infeccioso.",
-      image: "https://img.freepik.com/fotos-gratis/jovem-medico-esta-usando-um-estetoscopio-ouvir-o-batimento-cardiaco-do-paciente-foto-de-uma-medica-dando-um-paciente-masculino-um-check-up_657921-875.jpg?semt=ais_hybrid&w=740&q=80",
-      alt: "Sistema imunológico"
+      title: 'Imunidade Coletiva',
+      description: 'Quando a maioria se vacina, protegemos aqueles que não podem, criando uma barreira comunitária contra surtos.',
+      icon: Users,
+      color: 'from-purple-500 to-pink-500'
     },
     {
-      title: "Benefícios da Vacinação",
-      description: "A vacinação previne doenças graves, reduz hospitalizações, protege a comunidade através da imunidade coletiva e contribui para a erradicação de doenças.",
-      image: "https://mundorh.com.br/wp-content/uploads/2024/06/Cultivando-Alegria-A-Arte-de-Criar-uma-Familia-Feliz-Mundo-RH.png",
-      alt: "Família saudável"
+      title: 'Economia de Vidas',
+      description: 'Milhões de vidas são salvas anualmente através da prevenção de doenças infecciosas e epidemias globais.',
+      icon: Heart,
+      color: 'from-red-500 to-orange-500'
     },
     {
-      title: "Segurança e Eficácia",
-      description: "Todas as vacinas passam por rigorosos testes clínicos e são constantemente monitoradas. Os benefícios da vacinação superam amplamente os riscos de efeitos colaterais.",
-      image: "https://wordpress-cms-revista-prod-assets.quero.space/legacy_posts/post_images/44394/5e69eaa7225eb126e41ff1ce462ebec0483b0bfe.jpg?1682443514",
-      alt: "Pesquisa científica"
+      title: 'Progresso Científico',
+      description: 'A vacinação representa décadas de pesquisa científica e avanços tecnológicos em medicina preventiva.',
+      icon: TrendingUp,
+      color: 'from-green-500 to-emerald-500'
     }
   ];
 
   return (
-    <Box sx={{ bgcolor: '#edebeb', minHeight: '100vh', py: 6 }}>
-      <Container maxWidth="lg">
-        {/* Header */}
-        <Box sx={{ textAlign: 'center', mb: 6 }}>
-          <Typography 
-            variant="h3" 
-            component="h1" 
-            gutterBottom 
-            sx={{ fontWeight: 'bold', color: '#1976d2' }}
-          >
-            Entenda a Importância da Vacinação
-          </Typography>
-          <Typography 
-            variant="h6" 
-            sx={{ color: 'text.secondary', maxWidth: '800px', mx: 'auto', mt: 2 }}
-          >
-            A vacinação é uma das maiores conquistas da medicina moderna, 
-            salvando milhões de vidas todos os anos através da prevenção de doenças.
-          </Typography>
-        </Box>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white overflow-hidden">
+      {/* Hero Section */}
+      <div className="relative min-h-screen flex items-center justify-center px-4">
+        {/* Animated Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div 
+            className="absolute rounded-full mix-blend-multiply filter blur-3xl opacity-20 bg-blue-500"
+            style={{ width: '384px', height: '384px', top: '10%', left: '10%' }}
+          />
+          <div 
+            className="absolute rounded-full mix-blend-multiply filter blur-3xl opacity-20 bg-purple-500"
+            style={{ width: '384px', height: '384px', top: '60%', right: '10%' }}
+          />
+          <div 
+            className="absolute rounded-full mix-blend-multiply filter blur-3xl opacity-20 bg-pink-500"
+            style={{ width: '384px', height: '384px', bottom: '10%', left: '50%' }}
+          />
+        </div>
 
-        {/* Cards Grid */}
-        <Grid container spacing={4}>
-          {cards.map((card, index) => (
-              <Card 
-                sx={{ 
-                  height: '100%',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  transition: 'transform 0.3s, box-shadow 0.3s',
-                  '&:hover': {
-                    transform: 'translateY(-8px)',
-                    boxShadow: 6
-                  }
-                }}
-              >
-                <CardActionArea sx={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}>
-                  <CardMedia
-                    component="img"
-                    height="200"
-                    image={card.image}
-                    alt={card.alt}
-                    sx={{ objectFit: 'cover' }}
-                  />
-                  <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography 
-                      gutterBottom 
-                      variant="h5" 
-                      component="div"
-                      sx={{ fontWeight: 'bold', color: '#1976d2' }}
-                    >
-                      {card.title}
-                    </Typography>
-                    <Typography variant="body1" sx={{ color: 'text.secondary', lineHeight: 1.7 }}>
-                      {card.description}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-          ))}
-        </Grid>
+        <div className="relative z-10 text-center max-w-5xl">
+          {/* Logo/Icon */}
+          <div className="mb-8 flex justify-center">
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-2xl opacity-50" />
+              <Shield className="relative text-blue-400" style={{ width: '96px', height: '96px' }} strokeWidth={1.5} />
+            </div>
+          </div>
 
-        {/* Call to Action */}
-        <Box sx={{ textAlign: 'center', mt: 8, p: 4, bgcolor: 'white', borderRadius: 2, boxShadow: 2 }}>
-          <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', color: '#1976d2' }}>
-            Mantenha sua Carteira de Vacinação em Dia
-          </Typography>
-          <Typography variant="body1" sx={{ color: 'text.secondary', mt: 2 }}>
-            Consulte o calendário de vacinação e proteja você e sua família contra doenças evitáveis.
-          </Typography>
-        </Box>
-      </Container>
-    </Box>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+            Vacinas Salvam Vidas
+          </h1>
+          
+          <p className="text-xl md:text-2xl mb-12 text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            A vacinação é uma das maiores conquistas da medicina moderna, protegendo milhões de pessoas ao redor do mundo contra doenças graves.
+          </p>
+
+          <div className="mb-16 max-w-4xl mx-auto bg-white/5 backdrop-blur-lg rounded-3xl p-8 border border-white/10">
+            <h3 className="text-2xl font-bold mb-4 text-blue-400">A Importância da Vacinação</h3>
+            <p className="text-lg text-gray-300 leading-relaxed mb-4">
+              As vacinas são responsáveis pela erradicação de doenças mortais como a varíola e pela redução drástica de outras enfermidades que antes causavam milhões de mortes. Cada dose aplicada não apenas protege quem a recebe, mas também contribui para a proteção coletiva da comunidade.
+            </p>
+            <p className="text-lg text-gray-300 leading-relaxed">
+              Manter a carteira de vacinação atualizada é um ato de cuidado consigo mesmo e com o próximo. É através da imunização em massa que conseguimos controlar epidemias e garantir um futuro mais saudável para as próximas gerações.
+            </p>
+          </div>
+
+          {/* Scroll Indicator */}
+          <div className="animate-bounce">
+            <ChevronDown className="w-8 h-8 mx-auto text-blue-400" />
+          </div>
+        </div>
+      </div>
+
+      {/* Stats Section */}
+      <div className="relative py-20 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-6">
+            {stats.map((stat, idx) => {
+              const Icon = stat.icon;
+              return (
+                <div 
+                  key={idx}
+                  className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300 transform hover:scale-105"
+                  style={{ width: '200px' }}
+                >
+                  <Icon className="w-8 h-8 mb-4 text-blue-400" />
+                  <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                    {stat.number}
+                  </div>
+                  <div className="text-gray-400 text-sm">{stat.label}</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* Benefits Section */}
+      <div className="relative py-20 px-4">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-5xl font-bold text-center mb-4">
+            Por Que Vacinar?
+          </h2>
+          <p className="text-xl text-gray-400 text-center mb-16 max-w-2xl mx-auto">
+            Entenda os principais benefícios da vacinação para você, sua família e toda a sociedade
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-8">
+            {benefits.map((benefit, idx) => {
+              const Icon = benefit.icon;
+              return (
+                <div 
+                  key={idx}
+                  className="group relative bg-white/5 backdrop-blur-lg rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-500 hover:shadow-2xl"
+                  style={{ width: '100%', maxWidth: '500px' }}
+                >
+                  <div className={`absolute inset-0 bg-gradient-to-br ${benefit.color} opacity-0 group-hover:opacity-10 rounded-3xl transition-opacity duration-500`} />
+                  
+                  <div className="relative">
+                    <div className={`w-16 h-16 bg-gradient-to-br ${benefit.color} rounded-2xl flex items-center justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300`}>
+                      <Icon className="w-8 h-8" />
+                    </div>
+                    
+                    <h3 className="text-2xl font-bold mb-4">{benefit.title}</h3>
+                    <p className="text-gray-400 leading-relaxed">{benefit.description}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* CTA Section */}
+      <div className="relative py-20 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-lg rounded-3xl p-12 border border-white/10">
+            <h2 className="text-4xl font-bold mb-6">
+              Mantenha Sua Carteira de Vacinação em Dia
+            </h2>
+            <p className="text-xl text-gray-300 mb-8">
+              Consulte um profissional de saúde e verifique quais vacinas você precisa tomar. A prevenção é o melhor remédio.
+            </p>
+            <a 
+            href="./Local"
+            className="px-10 py-5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full font-bold text-lg hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105">
+              Encontre um Posto de Saúde
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer className="relative py-8 px-4 border-t border-white/10">
+        <div className="max-w-7xl mx-auto text-center text-gray-400">
+          <p>© 2025 Vacinação é Vida. Informações baseadas em dados da OMS e Ministério da Saúde.</p>
+        </div>
+      </footer>
+    </div>
   );
 }
