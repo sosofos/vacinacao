@@ -15,7 +15,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import BadgeIcon from '@mui/icons-material/Badge';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import PhoneIcon from '@mui/icons-material/Phone';
-import DescriptionIcon from '@mui/icons-material/Description';
+import DescriptionIcon from '@mui/icons-material/DescriptionIcon';
 
 const bull = (
   <Box
@@ -113,7 +113,7 @@ export default function LocaisPage() {
 
         <Grid container spacing={4}>
           {locais.map((local, index) => (
-            <Grid item xs={12} md={6} key={index}>
+            <Grid item={true} xs={12} md={6} key={index}>
               <Card 
                 sx={{ 
                   minHeight: 450,
@@ -244,7 +244,7 @@ export default function LocaisPage() {
               </Typography>
               <Grid container spacing={2}>
                 {documentosNecessarios.map((doc, index) => (
-               
+                  <Grid item={true} xs={12} key={index}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       <Box 
                         sx={{ 
@@ -259,7 +259,7 @@ export default function LocaisPage() {
                         {doc}
                       </Typography>
                     </Box>
-             
+                  </Grid>
                 ))}
               </Grid>
             </CardContent>
@@ -279,7 +279,7 @@ export default function LocaisPage() {
               </Typography>
               <Grid container spacing={2}>
                 {dicas.map((dica, index) => (
-                 
+                  <Grid item xs={12} key={index}>
                     <Box sx={{ display: 'flex', alignItems: 'flex-start' }}>
                       <Typography 
                         sx={{ 
@@ -295,7 +295,7 @@ export default function LocaisPage() {
                         {dica}
                       </Typography>
                     </Box>
-
+                  </Grid>
                 ))}
               </Grid>
             </CardContent>
