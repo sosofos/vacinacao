@@ -1,12 +1,12 @@
-import * as React from 'react';
+'use client';
+
+import React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import BusinessIcon from '@mui/icons-material/Business';
@@ -15,62 +15,57 @@ import SchoolIcon from '@mui/icons-material/School';
 import BadgeIcon from '@mui/icons-material/Badge';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import PhoneIcon from '@mui/icons-material/Phone';
-import DescriptionIcon from '@mui/icons-material/DescriptionIcon';
-
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-  >
-    •
-  </Box>
-);
+import DescriptionIcon from '@mui/icons-material/Description';
 
 export default function LocaisPage() {
   const locais = [
     {
       tipo: "Unidades Básicas de Saúde (UBS)",
-      icon: <LocalHospitalIcon sx={{ fontSize: 50, color: '#1976d2' }} />,
+      iconColor: '#1976d2',
       descricao: "Postos de saúde do SUS disponíveis em todos os bairros",
       cor: "#e3f2fd",
       vacinas: "Todas as vacinas do calendário nacional gratuitas",
       horario: "Segunda a sexta: 7h às 17h (varia por unidade)",
       documentos: ["Carteira de vacinação", "Documento de identidade ou CPF", "Cartão SUS (se tiver)"],
       agendamento: "Não necessário",
-      observacao: "Verifique a unidade mais próxima no site da prefeitura"
+      observacao: "Verifique a unidade mais próxima no site da prefeitura",
+      iconType: 'hospital'
     },
     {
       tipo: "Clínicas Particulares",
-      icon: <BusinessIcon sx={{ fontSize: 50, color: '#7b1fa2' }} />,
+      iconColor: '#7b1fa2',
       descricao: "Redes de clínicas especializadas em vacinação",
       cor: "#f3e5f5",
       vacinas: "Vacinas do SUS + vacinas especiais (Herpes-zóster, Meningite B, etc)",
       horario: "Segunda a sábado: 8h às 20h (algumas unidades aos domingos)",
       documentos: ["Carteira de vacinação", "Documento de identidade", "Pedido médico (quando necessário)"],
       agendamento: "Recomendado (online ou telefone)",
-      observacao: "Valores variam conforme a vacina e podem ter cobertura por plano de saúde"
+      observacao: "Valores variam conforme a vacina e podem ter cobertura por plano de saúde",
+      iconType: 'business'
     },
     {
       tipo: "Campanhas de Vacinação",
-      icon: <HomeIcon sx={{ fontSize: 50, color: '#2e7d32' }} />,
+      iconColor: '#2e7d32',
       descricao: "Ações itinerantes em praças, escolas e empresas",
       cor: "#e8f5e9",
       vacinas: "Vacinas específicas da campanha (Gripe, COVID-19, Sarampo, etc)",
       horario: "Conforme divulgação (geralmente sábados e feriados)",
       documentos: ["Carteira de vacinação", "Documento de identidade"],
       agendamento: "Não necessário - atendimento por ordem de chegada",
-      observacao: "Fique atento às divulgações da Secretaria de Saúde nas redes sociais"
+      observacao: "Fique atento às divulgações da Secretaria de Saúde nas redes sociais",
+      iconType: 'home'
     },
     {
       tipo: "Salas de Vacina em Empresas",
-      icon: <SchoolIcon sx={{ fontSize: 50, color: '#ef6c00' }} />,
+      iconColor: '#ef6c00',
       descricao: "Vacinação corporativa disponível em algumas empresas",
       cor: "#fff3e0",
       vacinas: "Influenza, COVID-19 e outras conforme contrato",
       horario: "Durante horário comercial (varia por empresa)",
       documentos: ["Carteira de vacinação", "Crachá de funcionário"],
       agendamento: "Conforme organização interna da empresa",
-      observacao: "Consulte o RH ou departamento de saúde ocupacional"
+      observacao: "Consulte o RH ou departamento de saúde ocupacional",
+      iconType: 'school'
     }
   ];
 
@@ -90,6 +85,23 @@ export default function LocaisPage() {
     "Crianças menores de 2 anos: levar caderneta da criança",
     "Gestantes: levar cartão pré-natal"
   ];
+
+  const renderIcon = (iconType: string, color: string) => {
+    const iconProps = { sx: { fontSize: 50, color: color } };
+    
+    switch(iconType) {
+      case 'hospital':
+        return <LocalHospitalIcon {...iconProps} />;
+      case 'business':
+        return <BusinessIcon {...iconProps} />;
+      case 'home':
+        return <HomeIcon {...iconProps} />;
+      case 'school':
+        return <SchoolIcon {...iconProps} />;
+      default:
+        return <LocalHospitalIcon {...iconProps} />;
+    }
+  };
 
   return (
     <Box sx={{ bgcolor: '#edebeb', minHeight: '100vh', py: 6 }}>
@@ -111,9 +123,21 @@ export default function LocaisPage() {
           </Typography>
         </Box>
 
-        <Grid container spacing={4}>
+        <Box sx={{ 
+          display: 'flex', 
+          flexWrap: 'wrap', 
+          gap: 4, 
+          justifyContent: 'center',
+          mb: 6 
+        }}>
           {locais.map((local, index) => (
-            <Grid item={true} xs={12} md={6} key={index}>
+            <Box 
+              key={index} 
+              sx={{ 
+                width: { xs: '100%', md: 'calc(50% - 16px)' }, 
+                maxWidth: '600px' 
+              }}
+            >
               <Card 
                 sx={{ 
                   minHeight: 450,
@@ -127,7 +151,7 @@ export default function LocaisPage() {
               >
                 <CardContent>
                   <Box sx={{ textAlign: 'center', mb: 2 }}>
-                    {local.icon}
+                    {renderIcon(local.iconType, local.iconColor)}
                   </Box>
                   
                   <Typography 
@@ -152,7 +176,7 @@ export default function LocaisPage() {
                       variant="subtitle2" 
                       sx={{ fontWeight: 'bold', color: '#424242', mb: 1 }}
                     >
-                      💉 Vacinas Disponíveis:
+                      Vacinas Disponíveis:
                     </Typography>
                     <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                       {local.vacinas}
@@ -186,8 +210,8 @@ export default function LocaisPage() {
                     </Box>
                     <Box sx={{ ml: 3 }}>
                       {local.documentos.map((doc, idx) => (
-                        <Typography key={idx} variant="body2" sx={{ color: 'text.secondary' }}>
-                          {bull} {doc}
+                        <Typography key={idx} variant="body2" sx={{ color: 'text.secondary', mb: 0.5 }}>
+                          • {doc}
                         </Typography>
                       ))}
                     </Box>
@@ -217,21 +241,15 @@ export default function LocaisPage() {
                     }}
                   >
                     <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 500 }}>
-                      ℹ️ {local.observacao}
+                      Observação: {local.observacao}
                     </Typography>
                   </Box>
                 </CardContent>
-                
-                <CardActions sx={{ justifyContent: 'center', pb: 2 }}>
-                 
-          
-                </CardActions>
               </Card>
-            </Grid>
+            </Box>
           ))}
-        </Grid>
+        </Box>
 
-        {/* Seção de Documentos */}
         <Box sx={{ mt: 6 }}>
           <Card sx={{ bgcolor: '#fff9c4', boxShadow: 3 }}>
             <CardContent>
@@ -240,33 +258,31 @@ export default function LocaisPage() {
                 gutterBottom 
                 sx={{ fontWeight: 'bold', color: '#424242', mb: 3 }}
               >
-                📋 Documentos Necessários para Vacinação
+                Documentos Necessários para Vacinação
               </Typography>
-              <Grid container spacing={2}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                 {documentosNecessarios.map((doc, index) => (
-                  <Grid item={true} xs={12} key={index}>
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                      <Box 
-                        sx={{ 
-                          width: 8, 
-                          height: 8, 
-                          borderRadius: '50%', 
-                          bgcolor: '#f57c00', 
-                          mr: 2 
-                        }} 
-                      />
-                      <Typography variant="body1" sx={{ color: 'text.primary' }}>
-                        {doc}
-                      </Typography>
-                    </Box>
-                  </Grid>
+                  <Box key={index} sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Box 
+                      sx={{ 
+                        width: 8, 
+                        height: 8, 
+                        borderRadius: '50%', 
+                        bgcolor: '#f57c00', 
+                        mr: 2,
+                        flexShrink: 0
+                      }} 
+                    />
+                    <Typography variant="body1" sx={{ color: 'text.primary' }}>
+                      {doc}
+                    </Typography>
+                  </Box>
                 ))}
-              </Grid>
+              </Box>
             </CardContent>
           </Card>
         </Box>
 
-        {/* Seção de Dicas */}
         <Box sx={{ mt: 4 }}>
           <Card sx={{ bgcolor: '#e0f2f1', boxShadow: 3 }}>
             <CardContent>
@@ -275,34 +291,32 @@ export default function LocaisPage() {
                 gutterBottom 
                 sx={{ fontWeight: 'bold', color: '#424242', mb: 3 }}
               >
-                💡 Dicas Importantes
+                Dicas Importantes
               </Typography>
-              <Grid container spacing={2}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                 {dicas.map((dica, index) => (
-                  <Grid item xs={12} key={index}>
-                    <Box sx={{ display: 'flex', alignItems: 'flex-start' }}>
-                      <Typography 
-                        sx={{ 
-                          color: '#00695c', 
-                          fontWeight: 'bold', 
-                          mr: 1,
-                          fontSize: '1.2rem'
-                        }}
-                      >
-                        ✓
-                      </Typography>
-                      <Typography variant="body1" sx={{ color: 'text.primary' }}>
-                        {dica}
-                      </Typography>
-                    </Box>
-                  </Grid>
+                  <Box key={index} sx={{ display: 'flex', alignItems: 'flex-start' }}>
+                    <Typography 
+                      sx={{ 
+                        color: '#00695c', 
+                        fontWeight: 'bold', 
+                        mr: 1,
+                        fontSize: '1.2rem',
+                        flexShrink: 0
+                      }}
+                    >
+                      {'\u2713'}
+                    </Typography>
+                    <Typography variant="body1" sx={{ color: 'text.primary' }}>
+                      {dica}
+                    </Typography>
+                  </Box>
                 ))}
-              </Grid>
+              </Box>
             </CardContent>
           </Card>
         </Box>
 
-        {/* Call to Action */}
         <Box 
           sx={{ 
             mt: 6, 
