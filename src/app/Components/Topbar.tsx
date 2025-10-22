@@ -51,7 +51,7 @@ export default function ButtonAppBar() {
               }
             }}
           >
-            Login
+           
           </Button>
         </Toolbar>
       </AppBar>

@@ -21,9 +21,9 @@ export default function LocaisPage() {
   const locais = [
     {
       tipo: "Unidades Básicas de Saúde (UBS)",
-      iconColor: '#1976d2',
+      iconColor: '#2563EB',
       descricao: "Postos de saúde do SUS disponíveis em todos os bairros",
-      cor: "#e3f2fd",
+      cor: "#EFF6FF",
       vacinas: "Todas as vacinas do calendário nacional gratuitas",
       horario: "Segunda a sexta: 7h às 17h (varia por unidade)",
       documentos: ["Carteira de vacinação", "Documento de identidade ou CPF", "Cartão SUS (se tiver)"],
@@ -33,9 +33,9 @@ export default function LocaisPage() {
     },
     {
       tipo: "Clínicas Particulares",
-      iconColor: '#7b1fa2',
+      iconColor: '#10B981',
       descricao: "Redes de clínicas especializadas em vacinação",
-      cor: "#f3e5f5",
+      cor: "#ECFDF5",
       vacinas: "Vacinas do SUS + vacinas especiais (Herpes-zóster, Meningite B, etc)",
       horario: "Segunda a sábado: 8h às 20h (algumas unidades aos domingos)",
       documentos: ["Carteira de vacinação", "Documento de identidade", "Pedido médico (quando necessário)"],
@@ -45,9 +45,9 @@ export default function LocaisPage() {
     },
     {
       tipo: "Campanhas de Vacinação",
-      iconColor: '#2e7d32',
+      iconColor: '#06B6D4',
       descricao: "Ações itinerantes em praças, escolas e empresas",
-      cor: "#e8f5e9",
+      cor: "#ECFEFF",
       vacinas: "Vacinas específicas da campanha (Gripe, COVID-19, Sarampo, etc)",
       horario: "Conforme divulgação (geralmente sábados e feriados)",
       documentos: ["Carteira de vacinação", "Documento de identidade"],
@@ -57,9 +57,9 @@ export default function LocaisPage() {
     },
     {
       tipo: "Salas de Vacina em Empresas",
-      iconColor: '#ef6c00',
+      iconColor: '#F59E0B',
       descricao: "Vacinação corporativa disponível em algumas empresas",
-      cor: "#fff3e0",
+      cor: "#FEF3C7",
       vacinas: "Influenza, COVID-19 e outras conforme contrato",
       horario: "Durante horário comercial (varia por empresa)",
       documentos: ["Carteira de vacinação", "Crachá de funcionário"],
@@ -104,241 +104,337 @@ export default function LocaisPage() {
   };
 
   return (
-    <Box sx={{ bgcolor: '#edebeb', minHeight: '100vh', py: 6 }}>
-      <Container maxWidth="lg">
-        <Box sx={{ textAlign: 'center', mb: 6 }}>
-          <Typography 
-            variant="h3" 
-            component="h1" 
-            gutterBottom 
-            sx={{ fontWeight: 'bold', color: '#1976d2' }}
-          >
-            Onde se Vacinar?
-          </Typography>
-          <Typography 
-            variant="h6" 
-            sx={{ color: 'text.secondary', maxWidth: '800px', mx: 'auto', mt: 2 }}
-          >
-            Encontre o local mais adequado para você e sua família se protegerem
-          </Typography>
-        </Box>
+    <>
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display&display=swap');
+        
+        body {
+          font-family: 'DM Sans', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+          font-family: 'Montserrat', sans-serif;
+        }
+      `}</style>
 
-        <Box sx={{ 
-          display: 'flex', 
-          flexWrap: 'wrap', 
-          gap: 4, 
-          justifyContent: 'center',
-          mb: 6 
-        }}>
-          {locais.map((local, index) => (
-            <Box 
-              key={index} 
+      <Box sx={{ bgcolor: '#F9FAFB', minHeight: '100vh', py: 6 }}>
+        <Container maxWidth="lg">
+          <Box sx={{ textAlign: 'center', mb: 6 }}>
+            <Typography 
+              variant="h3" 
+              component="h1" 
+              gutterBottom 
               sx={{ 
-                width: { xs: '100%', md: 'calc(50% - 16px)' }, 
-                maxWidth: '600px' 
+                fontWeight: 700, 
+                color: '#2563EB',
+                fontFamily: "'Montserrat', sans-serif"
               }}
             >
-              <Card 
+              Onde se Vacinar?
+            </Typography>
+            <Typography 
+              variant="h6" 
+              sx={{ 
+                color: '#6B7280', 
+                maxWidth: '800px', 
+                mx: 'auto', 
+                mt: 2,
+                fontFamily: "'DM Sans', sans-serif",
+                fontWeight: 400
+              }}
+            >
+              Encontre o local mais adequado para você e sua família se protegerem
+            </Typography>
+          </Box>
+
+          <Box sx={{ 
+            display: 'flex', 
+            flexWrap: 'wrap', 
+            gap: 4, 
+            justifyContent: 'center',
+            mb: 6 
+          }}>
+            {locais.map((local, index) => (
+              <Box 
+                key={index} 
                 sx={{ 
-                  minHeight: 450,
-                  bgcolor: local.cor,
-                  transition: 'transform 0.2s, box-shadow 0.2s',
-                  '&:hover': {
-                    transform: 'translateY(-4px)',
-                    boxShadow: 6
-                  }
+                  width: { xs: '100%', md: 'calc(50% - 16px)' }, 
+                  maxWidth: '600px' 
                 }}
               >
-                <CardContent>
-                  <Box sx={{ textAlign: 'center', mb: 2 }}>
-                    {renderIcon(local.iconType, local.iconColor)}
-                  </Box>
-                  
-                  <Typography 
-                    variant="h5" 
-                    component="div" 
-                    sx={{ fontWeight: 'bold', color: '#424242', textAlign: 'center', mb: 1 }}
-                  >
-                    {local.tipo}
-                  </Typography>
-                  
-                  <Typography 
-                    variant="body2" 
-                    sx={{ color: 'text.secondary', textAlign: 'center', mb: 2 }}
-                  >
-                    {local.descricao}
-                  </Typography>
-
-                  <Divider sx={{ my: 2 }} />
-
-                  <Box sx={{ mb: 2 }}>
+                <Card 
+                  sx={{ 
+                    minHeight: 450,
+                    bgcolor: local.cor,
+                    transition: 'transform 0.2s, box-shadow 0.2s',
+                    borderRadius: 2,
+                    boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+                    '&:hover': {
+                      transform: 'translateY(-4px)',
+                      boxShadow: '0 10px 25px rgba(0, 0, 0, 0.15)'
+                    }
+                  }}
+                >
+                  <CardContent>
+                    <Box sx={{ textAlign: 'center', mb: 2 }}>
+                      {renderIcon(local.iconType, local.iconColor)}
+                    </Box>
+                    
                     <Typography 
-                      variant="subtitle2" 
-                      sx={{ fontWeight: 'bold', color: '#424242', mb: 1 }}
-                    >
-                      Vacinas Disponíveis:
-                    </Typography>
-                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                      {local.vacinas}
-                    </Typography>
-                  </Box>
-
-                  <Box sx={{ mb: 2 }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 0.5 }}>
-                      <ScheduleIcon sx={{ fontSize: 18, mr: 1, color: '#757575' }} />
-                      <Typography 
-                        variant="subtitle2" 
-                        sx={{ fontWeight: 'bold', color: '#424242' }}
-                      >
-                        Horário de Funcionamento:
-                      </Typography>
-                    </Box>
-                    <Typography variant="body2" sx={{ color: 'text.secondary', ml: 3 }}>
-                      {local.horario}
-                    </Typography>
-                  </Box>
-
-                  <Box sx={{ mb: 2 }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 0.5 }}>
-                      <DescriptionIcon sx={{ fontSize: 18, mr: 1, color: '#757575' }} />
-                      <Typography 
-                        variant="subtitle2" 
-                        sx={{ fontWeight: 'bold', color: '#424242' }}
-                      >
-                        Documentos Necessários:
-                      </Typography>
-                    </Box>
-                    <Box sx={{ ml: 3 }}>
-                      {local.documentos.map((doc, idx) => (
-                        <Typography key={idx} variant="body2" sx={{ color: 'text.secondary', mb: 0.5 }}>
-                          • {doc}
-                        </Typography>
-                      ))}
-                    </Box>
-                  </Box>
-
-                  <Box sx={{ mb: 2 }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 0.5 }}>
-                      <BadgeIcon sx={{ fontSize: 18, mr: 1, color: '#757575' }} />
-                      <Typography 
-                        variant="subtitle2" 
-                        sx={{ fontWeight: 'bold', color: '#424242' }}
-                      >
-                        Agendamento:
-                      </Typography>
-                    </Box>
-                    <Typography variant="body2" sx={{ color: 'text.secondary', ml: 3 }}>
-                      {local.agendamento}
-                    </Typography>
-                  </Box>
-
-                  <Box 
-                    sx={{ 
-                      bgcolor: 'rgba(33, 150, 243, 0.1)', 
-                      p: 1.5, 
-                      borderRadius: 1,
-                      border: '1px solid rgba(33, 150, 243, 0.3)'
-                    }}
-                  >
-                    <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 500 }}>
-                      Observação: {local.observacao}
-                    </Typography>
-                  </Box>
-                </CardContent>
-              </Card>
-            </Box>
-          ))}
-        </Box>
-
-        <Box sx={{ mt: 6 }}>
-          <Card sx={{ bgcolor: '#fff9c4', boxShadow: 3 }}>
-            <CardContent>
-              <Typography 
-                variant="h5" 
-                gutterBottom 
-                sx={{ fontWeight: 'bold', color: '#424242', mb: 3 }}
-              >
-                Documentos Necessários para Vacinação
-              </Typography>
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                {documentosNecessarios.map((doc, index) => (
-                  <Box key={index} sx={{ display: 'flex', alignItems: 'center' }}>
-                    <Box 
+                      variant="h5" 
+                      component="div" 
                       sx={{ 
-                        width: 8, 
-                        height: 8, 
-                        borderRadius: '50%', 
-                        bgcolor: '#f57c00', 
-                        mr: 2,
-                        flexShrink: 0
-                      }} 
-                    />
-                    <Typography variant="body1" sx={{ color: 'text.primary' }}>
-                      {doc}
-                    </Typography>
-                  </Box>
-                ))}
-              </Box>
-            </CardContent>
-          </Card>
-        </Box>
-
-        <Box sx={{ mt: 4 }}>
-          <Card sx={{ bgcolor: '#e0f2f1', boxShadow: 3 }}>
-            <CardContent>
-              <Typography 
-                variant="h5" 
-                gutterBottom 
-                sx={{ fontWeight: 'bold', color: '#424242', mb: 3 }}
-              >
-                Dicas Importantes
-              </Typography>
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                {dicas.map((dica, index) => (
-                  <Box key={index} sx={{ display: 'flex', alignItems: 'flex-start' }}>
-                    <Typography 
-                      sx={{ 
-                        color: '#00695c', 
-                        fontWeight: 'bold', 
-                        mr: 1,
-                        fontSize: '1.2rem',
-                        flexShrink: 0
+                        fontWeight: 700, 
+                        color: '#1F2937', 
+                        textAlign: 'center', 
+                        mb: 1,
+                        fontFamily: "'Montserrat', sans-serif"
                       }}
                     >
-                      {'\u2713'}
+                      {local.tipo}
                     </Typography>
-                    <Typography variant="body1" sx={{ color: 'text.primary' }}>
-                      {dica}
+                    
+                    <Typography 
+                      variant="body2" 
+                      sx={{ 
+                        color: '#6B7280', 
+                        textAlign: 'center', 
+                        mb: 2,
+                        fontFamily: "'DM Sans', sans-serif"
+                      }}
+                    >
+                      {local.descricao}
                     </Typography>
-                  </Box>
-                ))}
-              </Box>
-            </CardContent>
-          </Card>
-        </Box>
 
-        <Box 
-          sx={{ 
-            mt: 6, 
-            p: 4, 
-            bgcolor: 'white', 
-            borderRadius: 2, 
-            boxShadow: 2,
-            textAlign: 'center' 
-          }}
-        >
-          <PhoneIcon sx={{ fontSize: 50, color: '#1976d2', mb: 2 }} />
-          <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', color: '#1976d2' }}>
-            Precisa de Ajuda?
-          </Typography>
-          <Typography variant="body1" sx={{ color: 'text.secondary', mb: 2 }}>
-            Entre em contato com a Secretaria de Saúde do seu município ou ligue para o Disque Saúde 136
-          </Typography>
-          <Button variant="contained" size="large" sx={{ mt: 2 }}>
-            Falar com Atendimento
-          </Button>
-        </Box>
-      </Container>
-    </Box>
+                    <Divider sx={{ my: 2 }} />
+
+                    <Box sx={{ mb: 2 }}>
+                      <Typography 
+                        variant="subtitle2" 
+                        sx={{ 
+                          fontWeight: 600, 
+                          color: '#1F2937', 
+                          mb: 1,
+                          fontFamily: "'DM Sans', sans-serif"
+                        }}
+                      >
+                        Vacinas Disponíveis:
+                      </Typography>
+                      <Typography variant="body2" sx={{ color: '#6B7280', fontFamily: "'DM Sans', sans-serif" }}>
+                        {local.vacinas}
+                      </Typography>
+                    </Box>
+
+                    <Box sx={{ mb: 2 }}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 0.5 }}>
+                        <ScheduleIcon sx={{ fontSize: 18, mr: 1, color: '#10B981' }} />
+                        <Typography 
+                          variant="subtitle2" 
+                          sx={{ 
+                            fontWeight: 600, 
+                            color: '#1F2937',
+                            fontFamily: "'DM Sans', sans-serif"
+                          }}
+                        >
+                          Horário de Funcionamento:
+                        </Typography>
+                      </Box>
+                      <Typography variant="body2" sx={{ color: '#6B7280', ml: 3, fontFamily: "'DM Sans', sans-serif" }}>
+                        {local.horario}
+                      </Typography>
+                    </Box>
+
+                    <Box sx={{ mb: 2 }}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 0.5 }}>
+                        <DescriptionIcon sx={{ fontSize: 18, mr: 1, color: '#06B6D4' }} />
+                        <Typography 
+                          variant="subtitle2" 
+                          sx={{ 
+                            fontWeight: 600, 
+                            color: '#1F2937',
+                            fontFamily: "'DM Sans', sans-serif"
+                          }}
+                        >
+                          Documentos Necessários:
+                        </Typography>
+                      </Box>
+                      <Box sx={{ ml: 3 }}>
+                        {local.documentos.map((doc, idx) => (
+                          <Typography key={idx} variant="body2" sx={{ color: '#6B7280', mb: 0.5, fontFamily: "'DM Sans', sans-serif" }}>
+                            • {doc}
+                          </Typography>
+                        ))}
+                      </Box>
+                    </Box>
+
+                    <Box sx={{ mb: 2 }}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 0.5 }}>
+                        <BadgeIcon sx={{ fontSize: 18, mr: 1, color: '#F59E0B' }} />
+                        <Typography 
+                          variant="subtitle2" 
+                          sx={{ 
+                            fontWeight: 600, 
+                            color: '#1F2937',
+                            fontFamily: "'DM Sans', sans-serif"
+                          }}
+                        >
+                          Agendamento:
+                        </Typography>
+                      </Box>
+                      <Typography variant="body2" sx={{ color: '#6B7280', ml: 3, fontFamily: "'DM Sans', sans-serif" }}>
+                        {local.agendamento}
+                      </Typography>
+                    </Box>
+
+                    <Box 
+                      sx={{ 
+                        bgcolor: 'rgba(37, 99, 235, 0.08)', 
+                        p: 1.5, 
+                        borderRadius: 1,
+                        border: '1px solid rgba(37, 99, 235, 0.2)'
+                      }}
+                    >
+                      <Typography variant="body2" sx={{ color: '#1F2937', fontWeight: 500, fontFamily: "'DM Sans', sans-serif" }}>
+                        Observação: {local.observacao}
+                      </Typography>
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Box>
+            ))}
+          </Box>
+
+          <Box sx={{ mt: 6 }}>
+            <Card sx={{ bgcolor: '#FEF3C7', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', borderRadius: 2 }}>
+              <CardContent>
+                <Typography 
+                  variant="h5" 
+                  gutterBottom 
+                  sx={{ 
+                    fontWeight: 700, 
+                    color: '#1F2937', 
+                    mb: 3,
+                    fontFamily: "'Montserrat', sans-serif"
+                  }}
+                >
+                  Documentos Necessários para Vacinação
+                </Typography>
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                  {documentosNecessarios.map((doc, index) => (
+                    <Box key={index} sx={{ display: 'flex', alignItems: 'center' }}>
+                      <Box 
+                        sx={{ 
+                          width: 8, 
+                          height: 8, 
+                          borderRadius: '50%', 
+                          bgcolor: '#F59E0B', 
+                          mr: 2,
+                          flexShrink: 0
+                        }} 
+                      />
+                      <Typography variant="body1" sx={{ color: '#1F2937', fontFamily: "'DM Sans', sans-serif" }}>
+                        {doc}
+                      </Typography>
+                    </Box>
+                  ))}
+                </Box>
+              </CardContent>
+            </Card>
+          </Box>
+
+          <Box sx={{ mt: 4 }}>
+            <Card sx={{ bgcolor: '#ECFDF5', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', borderRadius: 2 }}>
+              <CardContent>
+                <Typography 
+                  variant="h5" 
+                  gutterBottom 
+                  sx={{ 
+                    fontWeight: 700, 
+                    color: '#1F2937', 
+                    mb: 3,
+                    fontFamily: "'Montserrat', sans-serif"
+                  }}
+                >
+                  Dicas Importantes
+                </Typography>
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                  {dicas.map((dica, index) => (
+                    <Box key={index} sx={{ display: 'flex', alignItems: 'flex-start' }}>
+                      <Typography 
+                        sx={{ 
+                          color: '#10B981', 
+                          fontWeight: 'bold', 
+                          mr: 1,
+                          fontSize: '1.2rem',
+                          flexShrink: 0
+                        }}
+                      >
+                        {'\u2713'}
+                      </Typography>
+                      <Typography variant="body1" sx={{ color: '#1F2937', fontFamily: "'DM Sans', sans-serif" }}>
+                        {dica}
+                      </Typography>
+                    </Box>
+                  ))}
+                </Box>
+              </CardContent>
+            </Card>
+          </Box>
+
+          <Box 
+            sx={{ 
+              mt: 6, 
+              p: 4, 
+              bgcolor: 'white', 
+              borderRadius: 2, 
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+              textAlign: 'center' 
+            }}
+          >
+            <PhoneIcon sx={{ fontSize: 50, color: '#2563EB', mb: 2 }} />
+            <Typography 
+              variant="h5" 
+              gutterBottom 
+              sx={{ 
+                fontWeight: 700, 
+                color: '#2563EB',
+                fontFamily: "'Montserrat', sans-serif"
+              }}
+            >
+              Precisa de Ajuda?
+            </Typography>
+            <Typography 
+              variant="body1" 
+              sx={{ 
+                color: '#6B7280', 
+                mb: 2,
+                fontFamily: "'DM Sans', sans-serif"
+              }}
+            >
+              Entre em contato com a Secretaria de Saúde do seu município ou ligue para o Disque Saúde 136
+            </Typography>
+            <Button href='https://webatendimento.saude.gov.br/'
+              variant="contained" 
+              size="large" 
+              sx={{ 
+                mt: 2,
+                bgcolor: '#2563EB',
+                fontFamily: "'DM Sans', sans-serif",
+                textTransform: 'none',
+                fontWeight: 600,
+                px: 4,
+                py: 1.5,
+                borderRadius: 2,
+                '&:hover': {
+                  bgcolor: '#1E40AF'
+                }
+              }}
+            >
+              Falar com Atendimento
+            </Button>
+          </Box>
+        </Container>
+      </Box>
+    </>
   );
 }
